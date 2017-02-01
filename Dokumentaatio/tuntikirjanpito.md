@@ -1,3 +1,5 @@
+S = Sami Lindqvist, J = Joakim Jaulimo, T = Tommi Viiala, O = Oskari Laaja
+
 ### Tuntikirjanpito
 Päivä | Tunnit | Tekijä | Kuvaus 
 --------------- | ----- | ------  | ----
