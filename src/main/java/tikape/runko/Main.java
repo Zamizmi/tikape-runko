@@ -21,6 +21,13 @@ public class Main {
 
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
+        
+//        get("/keskustelualue", (req, res) -> { Pohja keskustelualueille
+//            HashMap map = new HashMap<>();
+//            map.put("keskustelualueet", keskustelualue.findAll());
+//            
+//            return new ModelAndView(map, "keskustelualueet");
+//        }, new ThymeleafTemplateEngine());
 
         get("/opiskelijat", (req, res) -> {
             HashMap map = new HashMap<>();
