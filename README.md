@@ -4,4 +4,4 @@ Tietokantojen perusteet -kurssilla tehtävän web-sovelluksen pohja.
 
 ###Dokumentaatio
 
-[Tuntikirjanpito](dokumentaatio/tuntikirjanpito.md)
+[Tuntikirjanpito](Dokumentaatio/tuntikirjanpito.md)
