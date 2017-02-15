@@ -62,7 +62,7 @@ public class KeskustelualueDao implements Dao<Keskustelualue, Integer> {
     }
     
     public void save(Keskustelualue ka) throws SQLException {
-     this.database.update("INSERT INTO Keskustelualue (alueen_nimi) VALUES (?)", ka.getNimi());
+     //this.database.update("INSERT INTO Keskustelualue (alueen_nimi) VALUES (?)", ka.getNimi());
     }
 
     @Override
