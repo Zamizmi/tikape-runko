@@ -6,7 +6,6 @@ import static spark.Spark.*;
 import spark.template.thymeleaf.ThymeleafTemplateEngine;
 import tikape.runko.database.Database;
 import tikape.runko.database.KeskustelualueDao;
-import tikape.runko.database.OpiskelijaDao;
 
 public class Main {
 

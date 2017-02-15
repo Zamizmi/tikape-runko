@@ -60,6 +60,10 @@ public class KeskustelualueDao implements Dao<Keskustelualue, Integer> {
 
         return keskustelualueet;
     }
+    
+    public void save(Keskustelualue ka) throws SQLException {
+     this.database.update("INSERT INTO Keskustelualue (alueen_nimi) VALUES (?)", ka.getNimi());
+    }
 
     @Override
     public void delete(Integer key) throws SQLException {
