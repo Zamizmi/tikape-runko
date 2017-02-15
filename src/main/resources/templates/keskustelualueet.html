@@ -1,11 +1,8 @@
-<!--<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">-->
+<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    
 
-
-<!-- POHJA KESKUSTELUALUEELLE, LISTAN METODEJA MUUTETTAVA VIELÄ -->
-
-
-<!--<head>
+<head>
     <title>Keskustelualueet</title>
     <meta charset="utf-8" />
 </head>
@@ -14,9 +11,9 @@
     <h1>Keskustelualueet</h1>
 
     <ol>
-        <li th:each="opiskelija: ${keskustelualueet}">
-            <span th:text="${opiskelija.nimi}">opiskelijan nimi</span> <a th:href="${'/opiskelijat/' + opiskelija.id}">linkki</a>
+        <li th:each="keskustelualue: ${keskustelualueet}">
+            <span th:text="${keskustelualue}">alueen nimi</span>
         </li>
     </ol>
 </body>
-</html>-->
+</html>
