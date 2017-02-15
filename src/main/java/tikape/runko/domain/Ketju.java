@@ -8,10 +8,10 @@ public class Ketju {
     private int id;
     private String nimi;
     private String luoja;
-    private Timestamp aikaleima;
+    private String aikaleima;
     private int alue;
 
-    public Ketju(int id, String nimi, String luoja, Timestamp aikaleima, int alue) {
+    public Ketju(int id, String nimi, String luoja, String aikaleima, int alue) {
         this.id = id;
         this.nimi = nimi;
         this.luoja = luoja;
@@ -43,11 +43,11 @@ public class Ketju {
         this.luoja = luoja;
     }
 
-    public Timestamp getAikaleima() {
+    public String getAikaleima() {
         return aikaleima;
     }
 
-    public void setAikaleima(Timestamp aikaleima) {
+    public void setAikaleima(String aikaleima) {
         this.aikaleima = aikaleima;
     }
 

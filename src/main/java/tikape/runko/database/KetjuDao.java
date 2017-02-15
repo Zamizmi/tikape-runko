@@ -41,10 +41,10 @@ public class KetjuDao implements Dao<Ketju, Integer> {
         Integer id = rs.getInt("id");
         String nimi = rs.getString("ketjun_nimi");
         String luoja = rs.getString("luoja");
-        Timestamp aikaleima = rs.getTimestamp("aikaleima");
+        String aikaleima = rs.getString("aikaleima");
         Integer alue = rs.getInt("keskustelualue");
 
-        Ketju k = new Ketju(0, nimi, luoja, aikaleima, alue);
+        Ketju k = new Ketju(id, nimi, luoja, aikaleima, alue);
 
         rs.close();
         stmt.close();
@@ -64,10 +64,10 @@ public class KetjuDao implements Dao<Ketju, Integer> {
             Integer id = rs.getInt("id");
             String nimi = rs.getString("ketjun_nimi");
             String luoja = rs.getString("luoja");
-            Timestamp aikaleima = rs.getTimestamp("aikaleima");
+            String aikaleima = rs.getString("aikaleima");
             Integer alue = rs.getInt("keskustelualue");
 
-            ketjut.add(new Ketju(0, nimi, luoja, aikaleima, alue));
+            ketjut.add(new Ketju(id, nimi, luoja, aikaleima, alue));
         }
 
         rs.close();
