@@ -29,6 +29,13 @@ public class Main {
             
             return new ModelAndView(map, "keskustelualueet");
         }, new ThymeleafTemplateEngine());
+        
+        get("/keskustelualueet/:id", (req, res) -> {
+            HashMap map = new HashMap<>();
+            map.put("keskustelualue", keskustelualueDao.findOne(Integer.parseInt(req.params("id"))));
+            
+            return new ModelAndView(map, "keskustelualue");
+        }, new ThymeleafTemplateEngine());
 
 //        get("/opiskelijat", (req, res) -> {
 //            HashMap map = new HashMap<>();

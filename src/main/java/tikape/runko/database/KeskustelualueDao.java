@@ -29,7 +29,7 @@ public class KeskustelualueDao implements Dao<Keskustelualue, Integer> {
         }
 
         Integer id = rs.getInt("id");
-        String nimi = rs.getString("nimi");
+        String nimi = rs.getString("alueen_nimi");
 
         Keskustelualue k = new Keskustelualue(id, nimi);
 
