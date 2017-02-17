@@ -10,26 +10,20 @@
     <body>
         <h1>Viestit</h1>
 
-        <ul>
+        <ol>
             <li th:each="viesti: ${viestit}">
                 <strong><span th:text="${viesti.nimimerkki}">Vastaus</span></strong>
                 <i>Posted at:  <span th:text="${viesti.aikaleima}">Aikaleima</span></i>
                 <br></br>
                 <span th:text="${viesti.sisalto}">Viesti</span>
-                <ul>
-                    <li th:each="viesti: ${vastatut}">
-                        <strong><span th:text="${viesti.nimimerkki}">Vastaus</span></strong>
-                        <i>Posted at:  <span th:text="${viesti.aikaleima}">Aikaleima</span></i>
-                        <br></br>
-                        <span th:text="${viesti.sisalto}">Viesti</span>
-
-                        <br></br>
-                        <br></br>
-                    </li>
-                </ul>
-                <br></br>
-                <br></br>
             </li>
-        </ul>
+        </ol>
+        <form method="POST" action="/newviesti">
+            Nimimerkki<br/>
+            <input type="text" name="nimimerkki"/><br/>
+            Viesti<br/>
+            <input type="text" name="sisältö" size="500" style="width: 30%;"/><br/>          
+            <input type="submit" value="Send"/>
+        </form>
     </body>
 </html>

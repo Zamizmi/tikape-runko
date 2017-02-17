@@ -66,7 +66,7 @@ public class ViestiDao {
             String nimimerkki = rs.getString("nimimerkki");
             String sisalto = rs.getString("sisalto");
             String aikaleima = rs.getString("aikaleima");
-           
+
         }
 
         rs.close();
@@ -82,7 +82,7 @@ public class ViestiDao {
 
     public List<Viesti> findWithKetjunId(Integer key) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE Viesti.vastattu_viesti = 0 AND Viesti.ketju = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE Viesti.ketju = ?");
         stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
@@ -95,9 +95,7 @@ public class ViestiDao {
             String nimimerkki = rs.getString("nimimerkki");
             String sisalto = rs.getString("sisalto");
             String aikaleima = rs.getString("aikaleima");
-            if (vastattu_viesti == 0) {
-                viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
-            }
+            viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
         }
 
         rs.close();
@@ -109,6 +107,7 @@ public class ViestiDao {
 
     public List<Viesti> findWithViestinId(Integer key) throws SQLException {
         Connection connection = database.getConnection();
+
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE Viesti.vastattu_viesti = ?");
         stmt.setObject(1, key);
 
@@ -116,6 +115,7 @@ public class ViestiDao {
         List<Viesti> viestit = new ArrayList<>();
 
         while (rs.next()) {
+
             Integer id = rs.getInt("id");
             Integer vastattu_viesti = rs.getInt("vastattu_viesti");
             Integer ketju = rs.getInt("ketju");
@@ -123,9 +123,7 @@ public class ViestiDao {
             String sisalto = rs.getString("sisalto");
             String aikaleima = rs.getString("aikaleima");
 
-            if (vastattu_viesti != id && vastattu_viesti == key) {
-                viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
-            }
+            viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
 
         }
 

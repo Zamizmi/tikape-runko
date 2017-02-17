@@ -25,32 +25,51 @@ public class Main {
 
             return new ModelAndView(map, "index");
         }, new ThymeleafTemplateEngine());
-        
+
         get("/keskustelualueet", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("keskustelualueet", keskustelualueDao.findAll());
-            
+
             return new ModelAndView(map, "keskustelualueet");
         }, new ThymeleafTemplateEngine());
-        
+
         //Keskustelualueen ketjut -näkymä ketjut.html
         get("/keskustelualueet/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("keskustelualue", keskustelualueDao.findOne(Integer.parseInt(req.params("id"))));
             map.put("ketjut", ketjuDao.findWithKeskustelualueenId(Integer.parseInt(req.params("id"))));
-            
+
             return new ModelAndView(map, "ketjut");
         }, new ThymeleafTemplateEngine());
-        
+
         //Ketjun viestit -näkymä
         get("/ketjut/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("ketjut", ketjuDao.findOne(Integer.parseInt(req.params("id"))));
             map.put("viestit", viestiDao.findWithKetjunId(Integer.parseInt(req.params("id"))));
             map.put("vastatut", viestiDao.findWithViestinId(Integer.parseInt(req.params("id"))));
-            
+
             return new ModelAndView(map, "viesti");
         }, new ThymeleafTemplateEngine());
+
+        post("/newketju", (req, res) -> {
+            HashMap map = new HashMap<>();
+
+            String msg = req.queryParams("ketju");
+            String from = req.headers("Referer");
+            res.redirect(from);
+            return "";
+        });
+
+        post("/newviesti", (req, res) -> {
+            HashMap map = new HashMap<>();
+
+            String msg = req.queryParams("sisältö");
+            String nimi = req.queryParams("nimimerkki");
+            String from = req.headers("Referer");
+            res.redirect(from);
+            return "";
+        });
 
 //        get("/opiskelijat", (req, res) -> {
 //            HashMap map = new HashMap<>();
