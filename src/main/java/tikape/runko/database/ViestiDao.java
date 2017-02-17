@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import tikape.runko.domain.Ketju;
 import tikape.runko.domain.Viesti;
 
 /**
@@ -55,6 +56,7 @@ public class ViestiDao {
     public List<Viesti> findAll() throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti");
+        
 
         ResultSet rs = stmt.executeQuery();
         List<Viesti> viestit = new ArrayList<>();
@@ -79,32 +81,31 @@ public class ViestiDao {
     public void delete(Integer key) throws SQLException {
         // ei toteutettu
     }
-    
-        public Viesti findWithKetjunId(Integer key) throws SQLException {
+
+    public List<Viesti> findWithKetjunId(Integer key) throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE Viesti.ketju = ?");
         stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
-        boolean hasOne = rs.next();
-        if (!hasOne) {
-            return null;
+        List<Viesti> viestit = new ArrayList<>();
+
+        while (rs.next()) {
+            Integer id = rs.getInt("id");
+            Integer vastattu_viesti = rs.getInt("vastattu_viesti");
+            Integer ketju = rs.getInt("ketju");
+            String nimimerkki = rs.getString("nimimerkki");
+            String sisalto = rs.getString("sisalto");
+            String aikaleima = rs.getString("aikaleima");
+
+            viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
         }
-
-        Integer id = rs.getInt("id");
-        Integer vastattu_viesti = rs.getInt("vastattu_viesti");
-        Integer ketju = rs.getInt("ketju");
-        String nimimerkki = rs.getString("nimimerkki");
-        String sisalto = rs.getString("sisalto");
-        String aikaleima = rs.getString("aikaleima");
-
-        Viesti viesti = new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima);
 
         rs.close();
         stmt.close();
         connection.close();
 
-        return viesti;
+        return viestit;
     }
 
 }
