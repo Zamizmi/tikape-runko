@@ -41,8 +41,9 @@ public class ViestiDao {
         Integer ketju = rs.getInt("ketju");
         String nimimerkki = rs.getString("nimimerkki");
         String sisalto = rs.getString("sisalto");
+        String aikaleima = rs.getString("aikaleima");
 
-        Viesti viesti = new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto);
+        Viesti viesti = new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima);
 
         rs.close();
         stmt.close();
@@ -63,8 +64,9 @@ public class ViestiDao {
             Integer ketju = rs.getInt("ketju");
             String nimimerkki = rs.getString("nimimerkki");
             String sisalto = rs.getString("sisalto");
+            String aikaleima = rs.getString("aikaleima");
 
-            viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto));
+            viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
         }
 
         rs.close();
@@ -94,8 +96,9 @@ public class ViestiDao {
         Integer ketju = rs.getInt("ketju");
         String nimimerkki = rs.getString("nimimerkki");
         String sisalto = rs.getString("sisalto");
+        String aikaleima = rs.getString("aikaleima");
 
-        Viesti viesti = new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto);
+        Viesti viesti = new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima);
 
         rs.close();
         stmt.close();

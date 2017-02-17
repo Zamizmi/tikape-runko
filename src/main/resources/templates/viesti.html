@@ -10,10 +10,12 @@
 <body>
     <h1>Viestit</h1>
 
-    <ol>
+    <ul>
         <li th:each="viesti: ${viestit}">
+            <strong><span th:text="${viesti.nimimerkki}">Vastaus</span></strong>
+            <i>Posted at:  <span th:text="${viesti.aikaleima}">Aikaleima</span></i>
             <span th:text="${viesti.sisalto}">Viesti</span>
         </li>
-    </ol>
+    </ul>
 </body>
 </html>

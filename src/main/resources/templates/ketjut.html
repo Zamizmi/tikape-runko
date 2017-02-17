@@ -12,7 +12,10 @@
 
     <ol>
         <li th:each="ketju: ${ketjut}">
-            <a th:href="${'/ketjut/' + ketju.id}"><span th:text="${ketju.nimi}">ketjun nimi</span></a>
+            <a th:href="${'/ketjut/' + ketju.id}">
+                <span th:text="${ketju.nimi}">ketjun nimi</span>
+                <span th:text="${ketju.aikaleima}">aikaleima</span>
+            </a>
         </li>
     </ol>
 </body>
