@@ -33,6 +33,7 @@ public class Main {
             return new ModelAndView(map, "keskustelualueet");
         }, new ThymeleafTemplateEngine());
         
+        //Keskustelualueen ketjut -näkymä ketjut.html
         get("/keskustelualueet/:id", (req, res) -> {
             HashMap map = new HashMap<>();
             map.put("keskustelualue", keskustelualueDao.findOne(Integer.parseInt(req.params("id"))));
@@ -41,12 +42,13 @@ public class Main {
             return new ModelAndView(map, "ketjut");
         }, new ThymeleafTemplateEngine());
         
+        //Ketjun viestit -näkymä
         get("/ketjut/:id", (req, res) -> {
             HashMap map = new HashMap<>();
-            map.put("ketju", ketjuDao.findOne(Integer.parseInt(req.params("id"))));
+            map.put("ketjut", ketjuDao.findOne(Integer.parseInt(req.params("id"))));
             map.put("viestit", viestiDao.findWithKetjunId(Integer.parseInt(req.params("id"))));
             
-            return new ModelAndView(map, "viestit");
+            return new ModelAndView(map, "viesti");
         }, new ThymeleafTemplateEngine());
 
 //        get("/opiskelijat", (req, res) -> {

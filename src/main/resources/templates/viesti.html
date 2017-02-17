@@ -12,7 +12,7 @@
 
     <ol>
         <li th:each="viesti: ${viestit}">
-            <span th:text="${viesti}">Viesti</span>
+            <span th:text="${viesti.sisalto}">Viesti</span>
         </li>
     </ol>
 </body>
