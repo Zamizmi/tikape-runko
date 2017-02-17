@@ -19,6 +19,7 @@ public class OpiskelijaDao implements Dao<Opiskelija, Integer> {
 
     public OpiskelijaDao(Database database) {
         this.database = database;
+        //kekekek
     }
 
     @Override
