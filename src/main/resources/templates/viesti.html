@@ -1,24 +1,35 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    
 
-<head>
-    <title>Viesti</title>
-    <meta charset="utf-8" />
-</head>
 
-<body>
-    <h1>Viestit</h1>
+    <head>
+        <title>Viesti</title>
+        <meta charset="utf-8" />
+    </head>
 
-    <ul>
-        <li th:each="viesti: ${viestit}">
-            <strong><span th:text="${viesti.nimimerkki}">Vastaus</span></strong>
-            <i>Posted at:  <span th:text="${viesti.aikaleima}">Aikaleima</span></i>
-            <br></br>
-            <span th:text="${viesti.sisalto}">Viesti</span>
-            <br></br>
-            <br></br>
-        </li>
-    </ul>
-</body>
+    <body>
+        <h1>Viestit</h1>
+
+        <ul>
+            <li th:each="viesti: ${viestit}">
+                <strong><span th:text="${viesti.nimimerkki}">Vastaus</span></strong>
+                <i>Posted at:  <span th:text="${viesti.aikaleima}">Aikaleima</span></i>
+                <br></br>
+                <span th:text="${viesti.sisalto}">Viesti</span>
+                <ul>
+                    <li th:each="viesti: ${vastatut}">
+                        <strong><span th:text="${viesti.nimimerkki}">Vastaus</span></strong>
+                        <i>Posted at:  <span th:text="${viesti.aikaleima}">Aikaleima</span></i>
+                        <br></br>
+                        <span th:text="${viesti.sisalto}">Viesti</span>
+
+                        <br></br>
+                        <br></br>
+                    </li>
+                </ul>
+                <br></br>
+                <br></br>
+            </li>
+        </ul>
+    </body>
 </html>

@@ -107,5 +107,31 @@ public class ViestiDao {
 
         return viestit;
     }
+    
+    public List<Viesti> findWithViestinId(Integer key) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE Viesti.vastattu_viesti = ?");
+        stmt.setObject(1, key);
+
+        ResultSet rs = stmt.executeQuery();
+        List<Viesti> viestit = new ArrayList<>();
+
+        while (rs.next()) {
+            Integer id = rs.getInt("id");
+            Integer vastattu_viesti = rs.getInt("vastattu_viesti");
+            Integer ketju = rs.getInt("ketju");
+            String nimimerkki = rs.getString("nimimerkki");
+            String sisalto = rs.getString("sisalto");
+            String aikaleima = rs.getString("aikaleima");
+
+            viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return viestit;
+    }
 
 }
