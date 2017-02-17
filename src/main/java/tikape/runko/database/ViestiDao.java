@@ -55,7 +55,7 @@ public class ViestiDao {
 
     public List<Viesti> findAll() throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE Viesti.vastattu_viesti = 0");
 
         ResultSet rs = stmt.executeQuery();
         List<Viesti> viestit = new ArrayList<>();
@@ -66,8 +66,7 @@ public class ViestiDao {
             String nimimerkki = rs.getString("nimimerkki");
             String sisalto = rs.getString("sisalto");
             String aikaleima = rs.getString("aikaleima");
-
-            viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
+           
         }
 
         rs.close();
@@ -83,7 +82,7 @@ public class ViestiDao {
 
     public List<Viesti> findWithKetjunId(Integer key) throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE Viesti.ketju = ?");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE Viesti.vastattu_viesti = 0 AND Viesti.ketju = ?");
         stmt.setObject(1, key);
 
         ResultSet rs = stmt.executeQuery();
@@ -96,8 +95,9 @@ public class ViestiDao {
             String nimimerkki = rs.getString("nimimerkki");
             String sisalto = rs.getString("sisalto");
             String aikaleima = rs.getString("aikaleima");
-
-            viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
+            if (vastattu_viesti == 0) {
+                viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
+            }
         }
 
         rs.close();
