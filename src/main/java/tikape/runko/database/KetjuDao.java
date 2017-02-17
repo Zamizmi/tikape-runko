@@ -76,6 +76,32 @@ public class KetjuDao implements Dao<Ketju, Integer> {
 
         return ketjut;
     }
+    
+        
+    public List<Ketju> findWithKeskustelualueenId(Integer key) throws SQLException {
+        
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Ketju WHERE Ketju.keskustelualue = ?");
+        stmt.setObject(1, key);
+        
+        ResultSet rs = stmt.executeQuery();
+        List<Ketju> ketjut = new ArrayList<>();
+        while (rs.next()) {
+            Integer id = rs.getInt("id");
+            String nimi = rs.getString("ketjun_nimi");
+            String luoja = rs.getString("luoja");
+            String aikaleima = rs.getString("aikaleima");
+            Integer alue = rs.getInt("keskustelualue");
+
+            ketjut.add(new Ketju(id, nimi, luoja, aikaleima, alue));
+        }
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return ketjut;
+    }
 
     @Override
     public void delete(Integer key) throws SQLException {
