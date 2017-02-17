@@ -14,7 +14,10 @@
         <li th:each="viesti: ${viestit}">
             <strong><span th:text="${viesti.nimimerkki}">Vastaus</span></strong>
             <i>Posted at:  <span th:text="${viesti.aikaleima}">Aikaleima</span></i>
+            <br></br>
             <span th:text="${viesti.sisalto}">Viesti</span>
+            <br></br>
+            <br></br>
         </li>
     </ul>
 </body>
