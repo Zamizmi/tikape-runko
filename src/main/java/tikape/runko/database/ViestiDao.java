@@ -56,7 +56,6 @@ public class ViestiDao {
     public List<Viesti> findAll() throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti");
-        
 
         ResultSet rs = stmt.executeQuery();
         List<Viesti> viestit = new ArrayList<>();
@@ -107,7 +106,7 @@ public class ViestiDao {
 
         return viestit;
     }
-    
+
     public List<Viesti> findWithViestinId(Integer key) throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE Viesti.vastattu_viesti = ?");
@@ -124,7 +123,10 @@ public class ViestiDao {
             String sisalto = rs.getString("sisalto");
             String aikaleima = rs.getString("aikaleima");
 
-            viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
+            if (vastattu_viesti != id && vastattu_viesti == key) {
+                viestit.add(new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto, aikaleima));
+            }
+
         }
 
         rs.close();
