@@ -77,5 +77,31 @@ public class ViestiDao {
     public void delete(Integer key) throws SQLException {
         // ei toteutettu
     }
+    
+        public Viesti findWithKetjunId(Integer key) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE Viesti.ketju = ?");
+        stmt.setObject(1, key);
+
+        ResultSet rs = stmt.executeQuery();
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        Integer id = rs.getInt("id");
+        Integer vastattu_viesti = rs.getInt("vastattu_viesti");
+        Integer ketju = rs.getInt("ketju");
+        String nimimerkki = rs.getString("nimimerkki");
+        String sisalto = rs.getString("sisalto");
+
+        Viesti viesti = new Viesti(id, vastattu_viesti, ketju, nimimerkki, sisalto);
+
+        rs.close();
+        stmt.close();
+        connection.close();
+
+        return viesti;
+    }
 
 }
