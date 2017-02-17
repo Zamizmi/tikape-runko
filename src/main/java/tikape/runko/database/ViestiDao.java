@@ -55,7 +55,7 @@ public class ViestiDao {
 
     public List<Viesti> findAll() throws SQLException {
         Connection connection = database.getConnection();
-        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE Viesti.vastattu_viesti = 0");
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti");
 
         ResultSet rs = stmt.executeQuery();
         List<Viesti> viestit = new ArrayList<>();
