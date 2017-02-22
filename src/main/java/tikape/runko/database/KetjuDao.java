@@ -6,6 +6,7 @@
 package tikape.runko.database;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -76,14 +77,13 @@ public class KetjuDao implements Dao<Ketju, Integer> {
 
         return ketjut;
     }
-    
-        
+
     public List<Ketju> findWithKeskustelualueenId(Integer key) throws SQLException {
-        
+
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Ketju WHERE Ketju.keskustelualue = ?");
         stmt.setObject(1, key);
-        
+
         ResultSet rs = stmt.executeQuery();
         List<Ketju> ketjut = new ArrayList<>();
         while (rs.next()) {
@@ -106,6 +106,20 @@ public class KetjuDao implements Dao<Ketju, Integer> {
     @Override
     public void delete(Integer key) throws SQLException {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public void luoKetju(int keskustelualue, String ketjun_nimi, String luoja) throws Exception {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Ketju(keskustelualue INTEGER, ketjun_nimi VARCHAR, luoja VARCHAR) "
+                + "VALUES (?,?,?)");
+        String syote = keskustelualue + ", " + ketjun_nimi + ", " + luoja;
+        stmt.setInt(1, keskustelualue);
+        stmt.setString(2, ketjun_nimi);
+        stmt.setString(3, luoja);
+        stmt.execute();
+
+        conn.close();
+
     }
 
 }
