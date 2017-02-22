@@ -15,14 +15,15 @@
                 <a th:href="${'/ketjut/' + ketju.id}">
                     <span th:text="${ketju.nimi}">ketjun nimi</span>
                     <span th:text="${ketju.aikaleima}">aikaleima</span>
+                    <span th:text="${ketju.luoja}">Luoja</span>
                 </a>
             </li>
         </ol>
 
     <form method="POST">
             
-            <input type="text" name="ketjun_nimi"/>Ketjun nimi
-            <input type="text" name="luoja"/>Luoja
+        Ketjun nimi<br></br> <input type="text" name="ketjun_nimi"/><br></br>
+        Luoja<br></br> <input type="text" name="luoja"/><br></br>
             <input type="submit" value="lisää!"/>
         </form>
     </body>
