@@ -108,12 +108,11 @@ public class KetjuDao implements Dao<Ketju, Integer> {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    public void luoKetju(int keskustelualue, String ketjun_nimi, String luoja) throws Exception {
+    public void luoKetju(String keskustelualue, String ketjun_nimi, String luoja) throws Exception {
         Connection conn = database.getConnection();
-        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Ketju(keskustelualue INTEGER, ketjun_nimi VARCHAR, luoja VARCHAR) "
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Ketju(keskustelualue, ketjun_nimi, luoja) "
                 + "VALUES (?,?,?)");
-        String syote = keskustelualue + ", " + ketjun_nimi + ", " + luoja;
-        stmt.setInt(1, keskustelualue);
+        stmt.setString(1, keskustelualue);
         stmt.setString(2, ketjun_nimi);
         stmt.setString(3, luoja);
         stmt.execute();

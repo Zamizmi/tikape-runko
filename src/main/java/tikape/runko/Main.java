@@ -52,15 +52,6 @@ public class Main {
             return new ModelAndView(map, "viesti");
         }, new ThymeleafTemplateEngine());
 
-        post("/newketju", (req, res) -> {
-            HashMap map = new HashMap<>();
-
-            String msg = req.queryParams("ketju");
-            String from = req.headers("Referer");
-            res.redirect(from);
-            return "";
-        });
-
         post("/newviesti", (req, res) -> {
             HashMap map = new HashMap<>();
 
@@ -71,11 +62,11 @@ public class Main {
             return "";
         });
         
-        post("/newketju", (req, res) -> {
+        post("/keskustelualueet/:id", (req, res) -> {
 
-            int keskustelualue = Integer.parseInt(req.params("keskustelualue"));
-            String ketjun_nimi = req.params("ketjun_nimi");
-            String luoja = req.params("luoja");
+            String keskustelualue = req.params(":id");
+            String ketjun_nimi = req.queryParams("ketjun_nimi");
+            String luoja = req.queryParams("luoja");
             
             ketjuDao.luoKetju(keskustelualue, ketjun_nimi, luoja);
             
