@@ -9,3 +9,4 @@ Päivä | Tunnit | Tekijä | Kuvaus
 15.02.2017 | 3.5h | K | Tietokantojen luontia, koodauksen aloittamista.
 17.02.2017 | 6.0h | SJT | Keskustelualueet ja niihin liittyvät ketjut haettavissa.
 17.02.2017 | 6.0h | O | Viestilogiikka kuntoon.
+22.02.2017 | 4.0h | K | Lisäystoiminnallisuus ja korjauksia.
