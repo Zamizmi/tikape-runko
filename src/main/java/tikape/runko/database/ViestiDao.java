@@ -133,5 +133,17 @@ public class ViestiDao {
 
         return viestit;
     }
+    
+    public void luoViesti(String ketju, String nimimerkki, String sisalto) throws Exception {
+        Connection conn = database.getConnection();
+        PreparedStatement stmt = conn.prepareStatement("INSERT INTO Viesti(ketju, nimimerkki, sisalto) "
+                + "VALUES (?,?,?)");
+        stmt.setString(1, ketju);
+        stmt.setString(2, nimimerkki);
+        stmt.setString(3, sisalto);
+        stmt.execute();
 
+        conn.close();
+
+    }
 }

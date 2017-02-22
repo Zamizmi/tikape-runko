@@ -18,11 +18,11 @@
                 <span th:text="${viesti.sisalto}">Viesti</span>
             </li>
         </ol>
-        <form method="POST" action="/newviesti">
+        <form method="POST">
             Nimimerkki<br/>
             <input type="text" name="nimimerkki"/><br/>
             Viesti<br/>
-            <input type="text" name="sisältö" size="500" style="width: 30%;"/><br/>          
+            <input type="text" name="sisalto" size="500" style="width: 30%;"/><br/>          
             <input type="submit" value="Send"/>
         </form>
     </body>
