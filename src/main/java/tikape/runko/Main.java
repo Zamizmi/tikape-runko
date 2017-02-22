@@ -74,6 +74,19 @@ public class Main {
             res.redirect(from);
             return "";
         });
+        
+        post("/ketjut/:id", (req, res) -> {
+
+            String ketju = req.params(":id");
+            String nimimerkki = req.queryParams("nimimerkki");
+            String sisalto = req.queryParams("sisalto");
+            
+            viestiDao.luoViesti(ketju, nimimerkki, sisalto);
+            
+            String from = req.headers("Referer");
+            res.redirect(from);
+            return "";
+        });
 
 //        get("/opiskelijat", (req, res) -> {
 //            HashMap map = new HashMap<>();
