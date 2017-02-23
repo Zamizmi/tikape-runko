@@ -38,6 +38,8 @@ public class Main {
             HashMap map = new HashMap<>();
             map.put("keskustelualue", keskustelualueDao.findOne(Integer.parseInt(req.params("id"))));
             map.put("ketjut", ketjuDao.findWithKeskustelualueenId(Integer.parseInt(req.params("id"))));
+            map.put("viestien_lkm", ketjuDao.viestienMaara(Integer.parseInt(req.params("id"))));
+            
 
             return new ModelAndView(map, "ketjut");
         }, new ThymeleafTemplateEngine());

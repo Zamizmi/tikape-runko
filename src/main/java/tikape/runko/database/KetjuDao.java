@@ -78,6 +78,20 @@ public class KetjuDao implements Dao<Ketju, Integer> {
         return ketjut;
     }
 
+    public int viestienMaara(int id) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(id) FROM Viesti WHERE ketju = ?");
+
+        stmt.setObject(1, id);
+        ResultSet rs = stmt.executeQuery();
+
+        int lkm = rs.getInt(1);
+        stmt.close();
+        connection.close();
+        
+        return lkm;
+    }
+
     public List<Ketju> findWithKeskustelualueenId(Integer key) throws SQLException {
 
         Connection connection = database.getConnection();
