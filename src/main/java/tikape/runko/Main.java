@@ -36,9 +36,14 @@ public class Main {
         //Keskustelualueen ketjut -näkymä ketjut.html
         get("/keskustelualueet/:id", (req, res) -> {
             HashMap map = new HashMap<>();
+            HashMap ketjuMap = new HashMap<>();
             map.put("keskustelualue", keskustelualueDao.findOne(Integer.parseInt(req.params("id"))));
             map.put("ketjut", ketjuDao.findWithKeskustelualueenId(Integer.parseInt(req.params("id"))));
-            map.put("viestien_lkm", ketjuDao.viestienMaara(Integer.parseInt(req.params("id"))));
+            
+            for (int id : ketjuDao.ketjutAlueessa(Integer.parseInt(req.params("id")))) {
+                ketjuMap.put(id, ketjuDao.viestienMaara(id));
+            }
+            map.put("ketjut", ketjuMap);
             
 
             return new ModelAndView(map, "ketjut");

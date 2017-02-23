@@ -78,6 +78,24 @@ public class KetjuDao implements Dao<Ketju, Integer> {
         return ketjut;
     }
 
+    public List<Integer> ketjutAlueessa(int id) throws SQLException {
+        List<Integer> palautettava = new ArrayList<>();
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT id FROM Ketju WHERE keskustelualue = ?");
+
+        stmt.setObject(1, id);
+        ResultSet rs = stmt.executeQuery();
+        
+        while (rs.next()) {
+            int ketjunId = rs.getInt("id");
+            palautettava.add(ketjunId);
+        }
+        stmt.close();
+        connection.close();
+
+        return palautettava;
+    }
+    
     public int viestienMaara(int id) throws SQLException {
         Connection connection = database.getConnection();
         PreparedStatement stmt = connection.prepareStatement("SELECT COUNT(id) FROM Viesti WHERE ketju = ?");
@@ -88,7 +106,7 @@ public class KetjuDao implements Dao<Ketju, Integer> {
         int lkm = rs.getInt(1);
         stmt.close();
         connection.close();
-        
+
         return lkm;
     }
 
