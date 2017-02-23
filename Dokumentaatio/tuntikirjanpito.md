@@ -10,3 +10,4 @@ Päivä | Tunnit | Tekijä | Kuvaus
 17.02.2017 | 6.0h | SJT | Keskustelualueet ja niihin liittyvät ketjut haettavissa.
 17.02.2017 | 6.0h | O | Viestilogiikka kuntoon.
 22.02.2017 | 4.0h | K | Lisäystoiminnallisuus ja korjauksia.
+23.02.2017 | 3.0h | K | Ei edistystä.
