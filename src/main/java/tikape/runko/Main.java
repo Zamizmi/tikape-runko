@@ -13,12 +13,23 @@ import tikape.runko.domain.Ketju;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        Database database = new Database("jdbc:sqlite:foorumi.db");
-        database.init();
 
-        KeskustelualueDao keskustelualueDao = new KeskustelualueDao(database);
-        KetjuDao ketjuDao = new KetjuDao(database);
-        ViestiDao viestiDao = new ViestiDao(database);
+        // asetetaan portti jos heroku antaa PORT-ympäristömuuttujan
+        if (System.getenv("PORT") != null) {
+            port(Integer.valueOf(System.getenv("PORT")));
+        }
+                // käytetään oletuksena paikallista sqlite-tietokantaa
+        String jdbcOsoite = "jdbc:sqlite:kanta.db";
+        // jos heroku antaa käyttöömme tietokantaosoitteen, otetaan se käyttöön
+        if (System.getenv("DATABASE_URL") != null) {
+            jdbcOsoite = System.getenv("DATABASE_URL");
+        } 
+
+        Database db = new Database(jdbcOsoite);
+
+        KeskustelualueDao keskustelualueDao = new KeskustelualueDao(db);
+        KetjuDao ketjuDao = new KetjuDao(db);
+        ViestiDao viestiDao = new ViestiDao(db);
 
         get("/", (req, res) -> {
             HashMap map = new HashMap<>();
@@ -40,11 +51,10 @@ public class Main {
             HashMap ketjuMap = new HashMap<>();
             map.put("keskustelualue", keskustelualueDao.findOne(Integer.parseInt(req.params("id"))));
             map.put("ketjut", ketjuDao.findWithKeskustelualueenId(Integer.parseInt(req.params("id"))));
-            
+
             for (int id : ketjuDao.ketjutAlueessa(Integer.parseInt(req.params("id")))) {
                 ketjuMap.put(id, ketjuDao.viestienMaara(id));
             }
-            
 
             return new ModelAndView(map, "ketjut");
         }, new ThymeleafTemplateEngine());
@@ -67,20 +77,20 @@ public class Main {
             res.redirect(from);
             return "";
         });
-        
+
         post("/keskustelualueet/:id", (req, res) -> {
 
             String keskustelualue = req.params(":id");
             String ketjun_nimi = req.queryParams("ketjun_nimi");
             String luoja = req.queryParams("luoja");
-            
+
             ketjuDao.luoKetju(keskustelualue, ketjun_nimi, luoja);
-            
+
             String from = req.headers("Referer");
             res.redirect(from);
             return "";
         });
-        
+
         //Viestin luominen
         post("/ketjut/:id", (req, res) -> {
 
@@ -88,7 +98,7 @@ public class Main {
             String nimimerkki = req.queryParams("nimimerkki");
             String sisalto = req.queryParams("sisalto");
             viestiDao.luoViesti(ketju, nimimerkki, sisalto);
-            
+
             String from = req.headers("Referer");
             res.redirect(from);
             return "";
