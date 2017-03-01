@@ -8,6 +8,7 @@ import tikape.runko.database.Database;
 import tikape.runko.database.KeskustelualueDao;
 import tikape.runko.database.KetjuDao;
 import tikape.runko.database.ViestiDao;
+import tikape.runko.domain.Ketju;
 
 public class Main {
 
@@ -81,12 +82,12 @@ public class Main {
             return "";
         });
         
+        //Viestin luominen
         post("/ketjut/:id", (req, res) -> {
 
             String ketju = req.params(":id");
             String nimimerkki = req.queryParams("nimimerkki");
             String sisalto = req.queryParams("sisalto");
-            
             viestiDao.luoViesti(ketju, nimimerkki, sisalto);
             
             String from = req.headers("Referer");

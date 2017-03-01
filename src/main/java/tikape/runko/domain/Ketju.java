@@ -10,13 +10,25 @@ public class Ketju {
     private String luoja;
     private String aikaleima;
     private int alue;
+    private int viestienLkm;
+    private String viimeinenViesti;
 
-    public Ketju(int id, String nimi, String luoja, String aikaleima, int alue) {
+    public Ketju(int id, String nimi, String luoja, String aikaleima, int alue, int viestinLkm, String viimeinenViesti) {
         this.id = id;
         this.nimi = nimi;
         this.luoja = luoja;
         this.aikaleima = aikaleima;
         this.alue = alue;
+        this.viestienLkm = viestinLkm;
+        this.viimeinenViesti = viimeinenViesti;
+    }
+
+    public String getViimeinenViesti() {
+        return viimeinenViesti;
+    }
+
+    public int getViestienLkm() {
+        return viestienLkm;
     }
 
     public int getId() {
@@ -57,6 +69,6 @@ public class Ketju {
 
     public void setAlue(int alue) {
         this.alue = alue;
-    }    
+    }
 
 }

@@ -45,7 +45,10 @@ public class KetjuDao implements Dao<Ketju, Integer> {
         String aikaleima = rs.getString("aikaleima");
         Integer alue = rs.getInt("keskustelualue");
 
-        Ketju k = new Ketju(id, nimi, luoja, aikaleima, alue);
+        Integer vlkm = viestienMaara(id);
+            String viimeinenViesti = viimeisinViesti(id);
+
+        Ketju k = new Ketju(id, nimi, luoja, aikaleima, alue, vlkm, viimeinenViesti);
 
         rs.close();
         stmt.close();
@@ -68,7 +71,10 @@ public class KetjuDao implements Dao<Ketju, Integer> {
             String aikaleima = rs.getString("aikaleima");
             Integer alue = rs.getInt("keskustelualue");
 
-            ketjut.add(new Ketju(id, nimi, luoja, aikaleima, alue));
+            Integer vlkm = viestienMaara(id);
+            String viimeinenViesti = viimeisinViesti(id);
+
+            ketjut.add(new Ketju(id, nimi, luoja, aikaleima, alue, vlkm, viimeinenViesti));
         }
 
         rs.close();
@@ -109,6 +115,25 @@ public class KetjuDao implements Dao<Ketju, Integer> {
 
         return lkm;
     }
+    
+    public String viimeisinViesti(int id) throws SQLException {
+        Connection connection = database.getConnection();
+        PreparedStatement stmt = connection.prepareStatement("SELECT * FROM Viesti WHERE ketju = ? ORDER BY id DESC LIMIT 1");
+
+        stmt.setObject(1, id);
+        ResultSet rs = stmt.executeQuery();
+        
+        boolean hasOne = rs.next();
+        if (!hasOne) {
+            return null;
+        }
+
+        String aikaleima = rs.getString("aikaleima");
+        stmt.close();
+        connection.close();
+
+        return aikaleima;
+    }
 
     public List<Ketju> findWithKeskustelualueenId(Integer key) throws SQLException {
 
@@ -124,8 +149,11 @@ public class KetjuDao implements Dao<Ketju, Integer> {
             String luoja = rs.getString("luoja");
             String aikaleima = rs.getString("aikaleima");
             Integer alue = rs.getInt("keskustelualue");
+            
+            Integer vlkm = viestienMaara(id);
+            String viimeinenViesti = viimeisinViesti(id);
 
-            ketjut.add(new Ketju(id, nimi, luoja, aikaleima, alue));
+            ketjut.add(new Ketju(id, nimi, luoja, aikaleima, alue, vlkm, viimeinenViesti));
         }
 
         rs.close();
