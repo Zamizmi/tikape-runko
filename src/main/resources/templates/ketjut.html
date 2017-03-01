@@ -15,12 +15,14 @@
         <ol>
             <li th:each="ketju: ${ketjut}">
                 <a th:href="${'/ketjut/' + ketju.id}">
-                    <b><span th:text="${ketju.nimi}">ketjun nimi</span></b>
-                    Ketju luotu: <span th:text="${ketju.aikaleima}">aikaleima</span>,
-                    Luoja: <b><span th:text="${ketju.luoja}">Luoja</span></b>
+                    <b><span th:text="${ketju.nimi}">ketjun nimi</span></b> -  
+                    <span th:text="${ketju.luoja}">Luoja</span>
                     <br></br>
-                    <i>Viestejä:  <span th:text="${ketju.viestienLkm}">Viestien lukumäärä</span></i>
-                    <i>Uusin: -<span th:text="${ketju.viimeinenViesti}">Uusin viesti</span></i>
+                    <i>Viestejä:</i>  <span th:text="${ketju.viestienLkm}">Viestien lukumäärä</span>
+                    <br></br>
+                    <i>Uusin:</i> <span th:text="${ketju.viimeinenViesti}">Uusin viesti</span>
+                    <br></br>
+                    <i>Ketju luotu: <span th:text="${ketju.aikaleima}">aikaleima</span></i>
                     <p></p>
                 </a>
             </li>

@@ -152,6 +152,10 @@ public class KetjuDao implements Dao<Ketju, Integer> {
             
             Integer vlkm = viestienMaara(id);
             String viimeinenViesti = viimeisinViesti(id);
+            
+            if (vlkm == 0) {
+                viimeinenViesti = "Ei vielä viestejä";
+            }
 
             ketjut.add(new Ketju(id, nimi, luoja, aikaleima, alue, vlkm, viimeinenViesti));
         }
