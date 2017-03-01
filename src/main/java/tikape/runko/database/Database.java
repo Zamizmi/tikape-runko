@@ -61,10 +61,7 @@ public class Database {
         ArrayList<String> lista = new ArrayList<>();
 
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
-        lista.add("DROP TABLE Tuote;");
         // heroku käyttää SERIAL-avainsanaa uuden tunnuksen automaattiseen luomiseen
-        lista.add("CREATE TABLE Tuote (id SERIAL PRIMARY KEY, nimi varchar(255));");
-        lista.add("INSERT INTO Tuote (nimi) VALUES ('postgresql-tuote');");
         lista.add("CREATE TABLE Keskustelualue\n"
                 + "(\n"
                 + "id SERIAL PRIMARY KEY,\n"
