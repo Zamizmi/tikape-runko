@@ -44,7 +44,6 @@ public class Main {
             for (int id : ketjuDao.ketjutAlueessa(Integer.parseInt(req.params("id")))) {
                 ketjuMap.put(id, ketjuDao.viestienMaara(id));
             }
-            //map.put("ketjut", ketjuMap);
             
 
             return new ModelAndView(map, "ketjut");
