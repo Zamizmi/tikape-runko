@@ -19,7 +19,7 @@ public class Main {
             port(Integer.valueOf(System.getenv("PORT")));
         }
         // käytetään oletuksena paikallista sqlite-tietokantaa
-        String jdbcOsoite = "jdbc:sqlite:foorumi.db";
+        String jdbcOsoite = "jdbc:sqlite:kanta.db";
         // jos heroku antaa käyttöömme tietokantaosoitteen, otetaan se käyttöön
         if (System.getenv("DATABASE_URL") != null) {
             jdbcOsoite = System.getenv("DATABASE_URL");
