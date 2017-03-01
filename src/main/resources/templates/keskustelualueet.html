@@ -1,20 +1,22 @@
 <!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    
 
-<head>
-    <title>Keskustelualueet</title>
-    <meta charset="utf-8" />
-</head>
 
-<body>
-    <h1>Keskustelualueet</h1>
+    <head>
+        <title>Keskustelualueet</title>
+        <meta charset="utf-8" />
+        <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css'></link>
 
-    <ol>
-        <li th:each="keskustelualue: ${keskustelualueet}">
-            <a th:href="${'/keskustelualueet/' + keskustelualue.id}"><span th:text="${keskustelualue.nimi}">alueen nimi</span></a>
-        </li>
-    </ol>
-    <button type="button" onclick="window.location.href='/'">Palaa alkuun</button>
-</body>
+    </head>
+
+    <body>
+        <h1>Keskustelualueet</h1>
+
+        <ol>
+            <li th:each="keskustelualue: ${keskustelualueet}">
+                <a th:href="${'/keskustelualueet/' + keskustelualue.id}"><span th:text="${keskustelualue.nimi}">alueen nimi</span></a>
+            </li>
+        </ol>
+        <button type="button" onclick="window.location.href='/'">Palaa alkuun</button>
+    </body>
 </html>
