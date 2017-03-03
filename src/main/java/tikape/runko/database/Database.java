@@ -94,7 +94,7 @@ public class Database {
         lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Koulu');");
         lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Lemmikit');");
         lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Parhaat meemit');");
-
+        
         return lista;
     }
 
@@ -102,38 +102,38 @@ public class Database {
         ArrayList<String> lista = new ArrayList<>();
 
         // tietokantataulujen luomiseen tarvittavat komennot suoritusjärjestyksessä
-        lista.add("CREATE TABLE Keskustelualue\n"
-                + "(\n"
-                + "id integer PRIMARY KEY,\n"
-                + "alueen_nimi varchar(30) NOT NULL\n"
-                + ");");
-        lista.add("CREATE TABLE Ketju\n"
-                + "(\n"
-                + "id integer PRIMARY KEY, \n"
-                + "keskustelualue integer NOT NULL,\n"
-                + "ketjun_nimi varchar(50) NOT NULL,\n"
-                + "luoja varchar(50) NOT NULL,\n"
-                + "aikaleima DATE DEFAULT (datetime('now','localtime')) NOT NULL, \n"
-                + "FOREIGN KEY (keskustelualue) REFERENCES Keskustelualue(id)\n"
-                + ");");
-        lista.add("CREATE TABLE Viesti \n"
-                + "( \n"
-                + "id integer PRIMARY KEY,\n"
-                + "ketju integer NOT NULL,\n"
-                + "nimimerkki varchar(50) NOT NULL,\n"
-                + "sisalto varchar(500) NOT NULL, \n"
-                + "aikaleima DATE DEFAULT (datetime('now','localtime')) NOT NULL,\n"
-                + "FOREIGN KEY (ketju) REFERENCES Ketju(id)\n"
-                + ");");
-        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Oskun päiväkirja');");
-        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Tommin tupa');");
-        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Jokke Japani');");
-        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Yleinen keskustelu');");
-        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Ohjelmointi');");
-        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Autot');");
-        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Koulu');");
-        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Lemmikit');");
-        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Parhaat meemit');");
+//        lista.add("CREATE TABLE Keskustelualue\n"
+//                + "(\n"
+//                + "id integer PRIMARY KEY,\n"
+//                + "alueen_nimi varchar(30) NOT NULL\n"
+//                + ");");
+//        lista.add("CREATE TABLE Ketju\n"
+//                + "(\n"
+//                + "id integer PRIMARY KEY, \n"
+//                + "keskustelualue integer NOT NULL,\n"
+//                + "ketjun_nimi varchar(50) NOT NULL,\n"
+//                + "luoja varchar(50) NOT NULL,\n"
+//                + "aikaleima DATE DEFAULT (datetime('now','localtime')) NOT NULL, \n"
+//                + "FOREIGN KEY (keskustelualue) REFERENCES Keskustelualue(id)\n"
+//                + ");");
+//        lista.add("CREATE TABLE Viesti \n"
+//                + "( \n"
+//                + "id integer PRIMARY KEY,\n"
+//                + "ketju integer NOT NULL,\n"
+//                + "nimimerkki varchar(50) NOT NULL,\n"
+//                + "sisalto varchar(500) NOT NULL, \n"
+//                + "aikaleima DATE DEFAULT (datetime('now','localtime')) NOT NULL,\n"
+//                + "FOREIGN KEY (ketju) REFERENCES Ketju(id)\n"
+//                + ");");
+//        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Oskun päiväkirja');");
+//        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Tommin tupa');");
+//        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Jokke Japani');");
+//        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Yleinen keskustelu');");
+//        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Ohjelmointi');");
+//        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Autot');");
+//        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Koulu');");
+//        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Lemmikit');");
+//        lista.add("INSERT INTO Keskustelualue (alueen_nimi) VALUES ('Parhaat meemit');");
 
         return lista;
     }
